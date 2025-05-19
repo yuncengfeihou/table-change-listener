@@ -1,14 +1,32 @@
-// Import necessary SillyTavern globals (adjust path if your script.js is elsewhere or these are global)
-// 通常这些是在 script.js 中定义的全局变量或通过模块导入
-// 为了简单起见，我们假设它们是全局可访问的，或者 SillyTavern 环境已经提供了它们
-// const { getContext, eventSource, event_types } = SillyTavern; // 假设 SillyTavern 对象暴露了这些
 
-// 如果 SillyTavern 对象不可用，你可能需要这样访问（这是更常见的模式）
-// 这些通常是在 SillyTavern 的主 script.js 中定义的全局变量
-// const getContext = window.getContext;
-// const eventSource = window.eventSource;
-// const event_types = window.event_types;
+import {
+    getContext,
+    renderExtensionTemplateAsync,
+    extension_settings,
+} from '../../../extensions.js';
 
+import {
+    // --- 核心应用函数 ---
+    saveSettingsDebounced,
+    eventSource,
+    event_types,
+    selectCharacterById,    // 用于选择角色
+    doNewChat,              // 用于创建新聊天
+    printMessages,          // 用于刷新聊天UI
+    scrollChatToBottom,     // 用于滚动到底部
+    updateChatMetadata,     // 用于更新聊天元数据
+    saveChatConditional,    // 用于保存聊天
+    saveChat,               // 用于插件强制保存聊天
+    characters,             // 需要访问角色列表来查找索引
+    getThumbnailUrl,        // 可能需要获取头像URL
+    getRequestHeaders,      // 用于API请求的头部
+    openCharacterChat,      // 用于打开角色聊天
+} from '../../../../script.js';
+
+import {
+    // --- 群组相关函数 ---
+    select_group_chats,     // 用于选择群组聊天
+} from '../../../group-chats.js';
 
 jQuery(async () => {
     console.log("Table Change Listener Plugin Loaded!");
