@@ -1,6 +1,6 @@
 {
     "display_name": "Table Change Listener",
-    "loading_order": 20, // 比表格插件晚一点加载，确保表格插件已初始化
+    "loading_order": 2, 
     "requires": [],
     "optional": [],
     "js": "index.js",
